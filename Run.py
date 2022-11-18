@@ -15,25 +15,30 @@ print(onlyfiles)
 
 destination0 = 'Output_BW_test_set/'
 destination1 = 'Mask/'
+destination2 = 'Border/'
 for i in onlyfiles:
    path = 'Images_test_set/'+i
    img = cv2.imread(path)
    print(img.shape)
+   ### Croping to be done
    gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
    (thresh, binary) = cv2.threshold(gray_image, 150, 225, cv2.THRESH_BINARY)
    cv2.imwrite(destination0+i, binary)
    mask = cv2.imread(destination0+i, 0)
    mask = cv2.threshold(mask, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
-   img[mask == 255] = (36, 255, 12)
+   img[mask == 255] = (36, 255, 12)##change mask 
    cv2.imwrite(destination1+i, img)
-
+   ##Border line appending
+   
+   cv2.rectangle(img, (12,100), (300,200), (0,0,255), 2)
+   cv2.imwrite(destination2+i, img)
    cv2.imshow('image', img)
    #cv2.imshow('mask', mask)
    
 
 
    ##########BOX##########
-   #cv2.rectangle(image, start_point, end_point, color, thickness)
+   #
    #cv2.rectangle(Face, (x, y), (x+w, y+h), (255, 255, 255), thickness)
    cv2.waitKey(1000)
 
