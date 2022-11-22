@@ -42,6 +42,7 @@ for i in onlyfiles:
 
    cv2.imshow('Gray_scale', gray_image)
    (thresh, binary) = cv2.threshold(gray_image, 150, 225, cv2.THRESH_BINARY)
+   cv2.fastNlMeansDenoising(binary,None,10,7,21)
    cv2.imwrite(destination0+i, binary)
    
    ## Mask

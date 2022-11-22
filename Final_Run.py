@@ -11,6 +11,18 @@ from PIL import Image
 onlyfiles = [f for f in listdir("Images_test_set")
              if isfile(join("Images_test_set", f))]
 
+
+def erode(cycles, image):
+   for _ in range(cycles):
+         image = image.filter(ImageFilter.MinFilter(3))
+   return image
+
+def dilate(cycles, image):
+   for _ in range(cycles):
+         image = image.filter(ImageFilter.MaxFilter(3))
+   return image
+
+
 print(onlyfiles)
 destination = 'Images_test_set/'
 destination0 = 'Output_BW_test_set/'
@@ -34,11 +46,11 @@ for i in onlyfiles:
          cv2.drawContours(img, [cnt], 0, (0, 255, 0), 2)
          cv2.drawContours(mask, [cnt], 0, 255, -1)
          cv2.drawContours(bgrimg, [cnt], 0, (0, 255, 0), 2)
-   cv2.imwrite(destination1+i,img) 
+   cv2.imwrite(destination1+i,bgrimg) 
    cv2.imshow('BGRout', bgrimg)     
    cv2.imshow('output', img)
    #cv2.imshow(mask)
-   cv2.waitKey(1000)
+   cv2.waitKey(5000)
 
 
 
