@@ -1,7 +1,7 @@
 # importing the module
 import cv2
 
-img = cv2.imread(r"C:\Users\krish\OneDrive\Desktop\dark.jpeg")
+img = cv2.imread(r"C:\Users\krish\OneDrive\Desktop\pitchblack.jpeg")
 
 # Drawing rectangles
 #White Rectangle for the pitch
